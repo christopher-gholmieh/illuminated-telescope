@@ -9,7 +9,9 @@ import subprocess
 class Telescope:
     # Initialization:
     def __init__(self) -> None:
-        pass
+        # Variables (Assignment):
+        # Services:
+        self.critical_services: list[str] = []
 
     # Methods:
     def is_package_installed(self, package: str) -> bool:
