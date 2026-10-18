@@ -12,7 +12,7 @@ class Telescope:
         # Variables (Assignment):
         # Services:
         self.critical_services: list[str] = [
-            "openssh-server"
+            "openssh-server", "postfix"
         ]
 
     # Methods:

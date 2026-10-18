@@ -17,6 +17,8 @@ class SSHDParser:
     There haven't been any match statements in CyberPatriots before; hence, this parser assumes
     that all match statements can be ignored and are at the end of the file, in accordance with
     SSH configuration syntax.
+
+    TODO: Have this class also figure out any Include directives, and follow that directory.
     """
 
     # Initialization:
@@ -70,6 +72,16 @@ class SSHDParser:
         # Validation:
         if not path.exists():
             return
+
+        # Metadata:
+        # Group:
+        group_owner: str = path.group()
+
+        # User:
+        user_owner: str = path.owner()
+
+        # Access:
+        access: str = self.get_octal_permissions(path)
 
         # Logic:
         with open(file_path, "r", encoding="utf-8") as configuration_file:
@@ -125,12 +137,12 @@ class SSHDParser:
                             children=[],
 
                             # Group:
-                            group_owner=path.group(),
+                            group_owner=group_owner,
 
                             # User:
-                            user_owner=path.owner(),
+                            user_owner=user_owner,
 
                             # Access:
-                            access=self.get_octal_permissions(path),
+                            access=access,
                         )
                     )

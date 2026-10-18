@@ -2,7 +2,7 @@
 # Imports:
 
 # Parsers:
-from .parsers import SSHDParser, Document
+from .parsers import PostfixParser, SSHDParser, Document
 
 # Typing:
 from typing import Any
@@ -15,8 +15,11 @@ class Extractor:
         # Variables (Assignment):
         # Parsers:
         self.parser_map: dict[str, Any] = {
+            # Postfix:
+            "postfix": PostfixParser(),
+
             # SSHD:
-            "openssh-server": SSHDParser()
+            "openssh-server": SSHDParser(),
         }
 
     # Methods:
